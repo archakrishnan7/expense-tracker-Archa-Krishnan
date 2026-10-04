@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f8f5" />
+  <title>OptMoney — Your money, in view</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="OptMoney home">
+        <span class="brand-mark">O</span>
+        <span>OptMoney<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="side-label">MENU</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview">
+          <span class="nav-icon">◫</span> Overview
+        </button>
+        <button class="nav-item" data-view="transactions">
+          <span class="nav-icon">↗</span> Transactions
+          <span class="nav-count" id="nav-count">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-card">
+          <span class="privacy-icon">✦</span>
+          <strong>Your data stays yours.</strong>
+          <p>Everything is saved privately on this device.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">Y</div>
+          <div><strong>Your wallet</strong><span>Personal account</span></div>
+          <span class="profile-dots">···</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <a class="mobile-brand" href="#" aria-label="OptMoney home">
+          <span class="brand-mark">O</span> OptMoney<span class="brand-period">.</span>
+        </a>
+        <div class="breadcrumb">
+          <span>Workspace</span><span class="crumb-sep">/</span>
+          <strong id="breadcrumb-title">Overview</strong>
+        </div>
+        <div class="topbar-right">
+          <span class="today-label" id="today-label"></span>
+          <button class="icon-button" id="help-button" aria-label="About OptMoney" title="About OptMoney">?</button>
+        </div>
+      </header>
+
+      <section class="welcome-screen" id="welcome-screen">
+        <div class="welcome-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> A LITTLE MORE CLARITY</div>
+          <h1>Your money,<br><span>in good hands.</span></h1>
+          <p>Meet OptMoney: a simple, calm space to track what comes in, what goes out, and where it all goes.</p>
+          <button class="button button-primary button-large" id="get-started">
+            Get started <span>→</span>
+          </button>
+          <div class="welcome-note"><span>✓</span> No account needed. Your data stays on this device.</div>
+        </div>
+
+        <div class="welcome-art" aria-hidden="true">
+          <div class="art-glow"></div>
+          <div class="art-card">
+            <div class="art-card-top"><span>YOUR MONEY, IN VIEW</span><span class="art-dots">···</span></div>
+            <div class="art-balance">₹ <span id="welcome-balance">0.00</span></div>
+            <div class="art-change"><span>✦</span> Your finances, made clearer</div>
+            <div class="art-chart">
+              <div class="chart-grid"></div>
+              <svg viewBox="0 0 400 115" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="#9bc9ad" stop-opacity=".35"/>
+                    <stop offset="1" stop-color="#9bc9ad" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,91 C30,88 35,65 70,72 S111,49 139,62 S182,81 207,52 S249,43 275,50 S316,35 340,42 S376,12 400,18 L400,115 L0,115Z" fill="url(#fill)"/>
+                <path d="M0,91 C30,88 35,65 70,72 S111,49 139,62 S182,81 207,52 S249,43 275,50 S316,35 340,42 S376,12 400,18" fill="none" stroke="#547c61" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="400" cy="18" r="5" fill="#547c61"/>
+              </svg>
+            </div>
+            <div class="art-months"><span>PLAN</span><span>TRACK</span><span>UNDERSTAND</span></div>
+          </div>
+          <div class="floating-note">
+            <span class="float-icon">✓</span>
+            <span><strong>A fresh start</strong><small>Your money at a glance</small></span>
+          </div>
+          <div class="decor-dot dot-one"></div>
+          <div class="decor-dot dot-two"></div>
+        </div>
+
+        <div class="welcome-footer">
+          <span>TAKE IT ONE DAY AT A TIME</span>
+          <span>BUILT FOR REAL LIFE <i>✦</i></span>
+        </div>
+      </section>
+
+      <section class="dashboard hidden" id="dashboard">
+        <div class="page-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR FINANCES</div>
+            <h1 id="greeting">Good morning.</h1>
+            <p>A clear picture of your money, all in one place.</p>
+          </div>
+          <button class="button button-primary" id="add-transaction"><span class="plus">+</span> Add transaction</button>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card balance-card">
+            <div class="summary-top"><span>AVAILABLE BALANCE</span><span class="summary-icon">◉</span></div>
+            <div class="summary-value" id="balance-value">₹0.00</div>
+            <div class="summary-foot"><span class="balance-indicator">●</span> Income minus expenses</div>
+            <div class="balance-decoration"></div>
+          </article>
+          <article class="summary-card">
+            <div class="summary-top"><span>TOTAL INCOME</span><span class="summary-icon income-icon">↙</span></div>
+            <div class="summary-value" id="income-value">₹0.00</div>
+            <div class="summary-foot">Money received</div>
+          </article>
+          <article class="summary-card">
+            <div class="summary-top"><span>TOTAL EXPENSES</span><span class="summary-icon expense-icon">↗</span></div>
+            <div class="summary-value" id="expense-value">₹0.00</div>
+            <div class="summary-foot">Money spent</div>
+          </article>
+        </div>
+
+        <div class="section-heading" id="section-heading">
+          <div><h2>Recent activity</h2><p>Your latest income and expenses</p></div>
+          <button class="text-button" id="view-all">View all <span>→</span></button>
+        </div>
+
+        <div class="filter-row">
+          <div class="filter-tabs" role="group" aria-label="Filter transactions">
+            <button class="filter-tab active" data-filter="all">All activity</button>
+            <button class="filter-tab" data-filter="income">Income</button>
+            <button class="filter-tab" data-filter="expense">Expenses</button>
+          </div>
+          <select id="category-filter" class="category-filter" aria-label="Filter by category">
+            <option value="all">All categories</option>
+          </select>
+        </div>
+
+        <div class="transaction-list" id="transaction-list"></div>
+
+        <div class="empty-state hidden" id="empty-state">
+          <div class="empty-illustration">↗</div>
+          <h3>No transactions yet</h3>
+          <p>Add your first income or expense to see your activity here.</p>
+          <button class="button button-primary" id="empty-add">Add a transaction</button>
+        </div>
+        <div class="list-footer" id="list-footer"></div>
+      </section>
+
+      <footer class="app-footer">
+        <span>MADE FOR A CLEARER VIEW OF YOUR MONEY</span>
+        <span>YOUR DATA LIVES ON THIS DEVICE <i>✦</i></span>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="transaction-dialog" id="transaction-dialog">
+    <form id="transaction-form">
+      <div class="dialog-header">
+        <div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR MONEY</div><h2 id="dialog-title">Add transaction</h2></div>
+        <button type="button" class="close-button" id="close-dialog" aria-label="Close">×</button>
+      </div>
+
+      <div class="type-toggle" role="group" aria-label="Transaction type">
+        <button type="button" class="type-option selected" data-type="expense">Expense</button>
+        <button type="button" class="type-option" data-type="income">Income</button>
+      </div>
+
+      <label class="field-label" for="amount">Amount</label>
+      <div class="amount-field"><span>₹</span><input id="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div>
+
+      <div class="form-grid">
+        <div><label class="field-label" for="category">Category</label><select id="category" required></select></div>
+        <div><label class="field-label" for="date">Date</label><input id="date" type="date" required /></div>
+      </div>
+
+      <label class="field-label" for="description">Description</label>
+      <input id="description" type="text" maxlength="80" placeholder="What was this for?" required />
+
+      <div class="form-error hidden" id="form-error"></div>
+      <div class="dialog-actions">
+        <button type="button" class="button button-quiet" id="cancel-dialog">Cancel</button>
+        <button class="button button-primary" type="submit" id="save-transaction">Save transaction <span>→</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="confirm-dialog" id="confirm-dialog">
+    <div class="confirm-content">
+      <div class="confirm-mark">×</div>
+      <h2>Delete this transaction?</h2>
+      <p>This can't be undone. The transaction will be removed from this device.</p>
+      <div class="dialog-actions">
+        <button class="button button-quiet" id="keep-transaction">Keep it</button>
+        <button class="button button-danger" id="confirm-delete">Delete transaction</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
